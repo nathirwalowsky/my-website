@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 const { t } = Astro.props;
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const otherLangHref = base + t.otherLangPath.replace(/^\//, '');
 ---
 
