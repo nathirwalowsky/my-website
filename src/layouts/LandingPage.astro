@@ -1,0 +1,161 @@
+---
+import '../styles/global.css';
+const { t } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const otherLangHref = base + t.otherLangPath.replace(/^\//, '');
+---
+
+<html lang={t.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{t.meta.title}</title>
+    <meta name="description" content={t.meta.description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+  </head>
+  <body class="bg-white text-gray-900 antialiased">
+
+    <!-- NAV -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur border-b border-gray-100">
+      <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href={base} class="font-bold text-lg tracking-tight hover:text-gray-600 transition-colors">Jakub Zachnik</a>
+        <div class="flex items-center gap-3">
+          <a
+            href={otherLangHref}
+            class="text-sm font-medium text-gray-500 hover:text-gray-900 border border-gray-200 px-3 py-1.5 rounded-lg transition-colors"
+          >
+            {t.otherLangLabel}
+          </a>
+          <a href="#contact" class="bg-gray-900 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+            {t.nav.cta}
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="pt-32 pb-24 px-6">
+      <div class="max-w-4xl mx-auto">
+        <p class="text-blue-600 font-semibold text-sm uppercase tracking-widest mb-4">{t.hero.eyebrow}</p>
+        <h1 class="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight mb-6">
+          {t.hero.headline1}<br />
+          <span class="text-gray-400">{t.hero.headline2}</span>
+        </h1>
+        <p class="text-xl text-gray-600 max-w-2xl mb-10 leading-relaxed">{t.hero.body}</p>
+        <a href="#contact" class="inline-block bg-blue-600 text-white font-semibold text-base px-8 py-4 rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-100">
+          {t.hero.cta}
+        </a>
+      </div>
+    </section>
+
+    <!-- CREDIBILITY BAR -->
+    <section class="bg-gray-50 border-y border-gray-100 py-10 px-6">
+      <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        {t.credibility.map((item) => (
+          <div>
+            <p class="text-3xl font-extrabold text-gray-900">{item.stat}</p>
+            <p class="text-sm text-gray-500 mt-1">{item.label}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- WHAT I DO -->
+    <section class="py-24 px-6">
+      <div class="max-w-4xl mx-auto">
+        <p class="text-blue-600 font-semibold text-sm uppercase tracking-widest mb-3">{t.services.eyebrow}</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-14">{t.services.heading}</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          {t.services.items.map((item, i) => (
+            <div class="bg-gray-50 rounded-2xl p-7">
+              <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center mb-5">
+                {i === 0 && (
+                  <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                )}
+                {i === 1 && (
+                  <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                )}
+                {i === 2 && (
+                  <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                )}
+              </div>
+              <h3 class="font-bold text-lg mb-2">{item.title}</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">{item.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="bg-gray-900 text-white py-24 px-6">
+      <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-14 items-center">
+        <div class="md:col-span-1">
+          <img src={base + 'jakub.jpg'} alt="Jakub Zachnik" class="rounded-2xl w-full object-cover aspect-[3/4] shadow-2xl" />
+        </div>
+        <div class="md:col-span-2">
+          <p class="text-blue-400 font-semibold text-sm uppercase tracking-widest mb-3">{t.about.eyebrow}</p>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">{t.about.heading}</h2>
+          <p class="text-gray-300 leading-relaxed mb-4">{t.about.p1}</p>
+          <p class="text-gray-300 leading-relaxed mb-4">{t.about.p2}</p>
+          <p class="text-gray-400 text-sm leading-relaxed mb-8">
+            {t.about.p3}<span class="text-white font-medium">{t.about.p3highlight}</span>{t.about.p3end}
+          </p>
+          <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700">
+            <p class="text-gray-400 text-sm uppercase tracking-widest font-semibold mb-4">{t.about.testimonialLabel}</p>
+            <blockquote class="text-white text-lg leading-relaxed italic mb-6">{t.about.testimonialQuote}</blockquote>
+            <p class="text-gray-400 text-sm">{t.about.testimonialAuthor}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEAD FORM -->
+    <section id="contact" class="py-24 px-6">
+      <div class="max-w-2xl mx-auto text-center mb-12">
+        <p class="text-blue-600 font-semibold text-sm uppercase tracking-widest mb-3">{t.form.eyebrow}</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">{t.form.heading}</h2>
+        <p class="text-gray-600">{t.form.subheading}</p>
+      </div>
+      <form class="max-w-xl mx-auto bg-gray-50 rounded-2xl p-8 border border-gray-100 space-y-5">
+        <div class="grid md:grid-cols-2 gap-5">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">{t.form.firstName}</label>
+            <input type="text" name="first_name" required placeholder={t.form.firstNamePlaceholder} class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">{t.form.lastName}</label>
+            <input type="text" name="last_name" required placeholder={t.form.lastNamePlaceholder} class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">{t.form.company}</label>
+          <input type="text" name="company" required placeholder={t.form.companyPlaceholder} class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">{t.form.email}</label>
+          <input type="email" name="email" required placeholder={t.form.emailPlaceholder} class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">{t.form.challenge}</label>
+          <textarea name="challenge" rows="4" required placeholder={t.form.challengePlaceholder} class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white resize-none"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-4 rounded-xl hover:bg-blue-700 transition-colors text-base shadow-lg shadow-blue-100">
+          {t.form.submit}
+        </button>
+        <p class="text-center text-xs text-gray-400">{t.form.disclaimer}</p>
+      </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-gray-100 py-8 px-6 text-center text-sm text-gray-400">
+      <p>{t.footer}</p>
+    </footer>
+
+  </body>
+</html>
